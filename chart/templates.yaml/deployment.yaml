@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  serviceName: "{{ .Release.Name }}-service"
+  replicas: 1  # As you mentioned only running one container
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: web
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - secretRef:
+            name: cctv-secrets
+        volumeMounts:
+        - name: images
+          mountPath: /usr/src/app/images
+  volumeClaimTemplates:
+  - metadata:
+      name: images
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "standard"  # You may need to adjust this based on your cluster setup
+      resources:
+        requests:
+          storage: 1Gi  # Specify the appropriate volume size
