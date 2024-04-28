@@ -1,8 +1,8 @@
 replicaCount: 1
 image:
-  repository: myimage
-  tag: latest
-  pullPolicy: IfNotPresent
+  repository: ghcr.io/mhempstock/stream-to-openai
+  tag: main
+  pullPolicy: Always
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 5000

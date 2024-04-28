@@ -24,12 +24,8 @@ spec:
         volumeMounts:
         - name: images
           mountPath: /usr/src/app/images
-  volumeClaimTemplates:
-  - metadata:
-      name: images
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "standard"  # You may need to adjust this based on your cluster setup
-      resources:
-        requests:
-          storage: 1Gi  # Specify the appropriate volume size
+      volumes:
+      - name: images
+        hostPath:
+          path: /opt/images
+          type: Directory

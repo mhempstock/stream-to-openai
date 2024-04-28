@@ -69,7 +69,6 @@ def latest_frame():
     for frame in selected_frames:  # Get the last 10 frames
         _, buffer = cv2.imencode('.jpg', frame)
         encoded_image = base64.b64encode(buffer).decode('utf-8')
-        print(len(encoded_image))
         images_html.append(f'<img src="data:image/jpeg;base64,{encoded_image}" style="width:50%; height:auto;">')
 
     # HTML template to display images in a grid layout with two columns

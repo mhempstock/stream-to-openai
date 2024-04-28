@@ -1,4 +1,4 @@
 apiVersion: v2
-name: mychart
+name: stream2openai
 description: A Helm chart for Kubernetes
 version: 0.1.0

@@ -1,2 +1,2 @@
 .env
-chart/templates.yaml/secret.yaml
+secret.yaml
