@@ -66,6 +66,7 @@ def latest_frame():
     selected_frames = [frame_buffer_1[i] for i in range(0, len(frame_buffer_1), step_1)]
     step_2 = max(1, len(frame_buffer_2) // EXTRACTED_FRAMES_COUNT)
     selected_frames += [frame_buffer_2[i] for i in range(0, len(frame_buffer_2), step_2)]
+    print("selected_frames %s" % len(selected_frames))
     for frame in selected_frames:  # Get the last 10 frames
         _, buffer = cv2.imencode('.jpg', frame)
         encoded_image = base64.b64encode(buffer).decode('utf-8')
